@@ -12,7 +12,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getServerSession(authOptions)
-
   return (
     <html>
       <head />
@@ -28,7 +27,7 @@ export default async function RootLayout({
 
               {/* ClientProvider - Notifications */}
 
-              <div className='bg-background flex-1'>{children}</div>
+              <div className='bg-grey flex-1'>{children}</div>
             </div>
           )}
         </SessionProvider>
