@@ -41,8 +41,7 @@ const ChatRow = ({ id }: Props) => {
     >
       <BsChatText className='text-xl' />
       <p className='flex-1 hidden truncate md:inline-flex'>
-        {messages?.docs[messages?.docs.length - 1]?.data().message ||
-          'New Chat'}
+        {messages?.docs[0]?.data().text || 'No messages yet'}
       </p>
       <BsTrash onClick={removeChat} className='text-xl hover:text-red-700' />
     </Link>

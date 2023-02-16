@@ -6,6 +6,8 @@ import { AiOutlineSend } from 'react-icons/ai'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import { db } from '../firebase'
 import toast from 'react-hot-toast'
+import ModelSelection from './ModelSelection'
+import useSwr from 'swr'
 
 type Props = {
   chatId: string
@@ -15,8 +17,9 @@ const ChatInput = ({ chatId }: Props) => {
   const [prompt, setPrompt] = useState('')
   const { data: session } = useSession()
 
-  //TODO: useSWR to get model
-  const model = 'text-davinci-003'
+  const { data: model } = useSwr('model', {
+    fallbackData: 'text-davinci-003',
+  })
 
   const sendMessage = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -88,7 +91,9 @@ const ChatInput = ({ chatId }: Props) => {
         </button>
       </form>
 
-      <div>{/* ModelSelection  */}</div>
+      <div className='md:hidden'>
+        <ModelSelection />
+      </div>
     </div>
   )
 }
